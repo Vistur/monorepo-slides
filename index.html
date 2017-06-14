@@ -14,18 +14,86 @@
 
 		<!-- Printing and PDF exports -->
 		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		var link = document.createElement("link");
+link.rel = "stylesheet";
+link.type = "text/css";
+link.href = window.location.search.match(/print-pdf/gi)
+  ? "css/print/pdf.css"
+  : "css/print/paper.css";
+document.getElementsByTagName("head")[0].appendChild(link);
+</script>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown>
+					<textarea data-template>
+						# FROM MONOLITH TO MONOREPO THROUGH MULTIREPO
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						- We had different FE/React applications in admin repo
+							- STM
+							- Claims
+							- Branch selector
+						- We had other FE/React applications in other repos
+							- Eagle
+							- ...
+						- They were all pretty similar in many aspects
+							- Handling application state
+							- Handling HTTP requests
+							- Handling translations
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						- They did not share any of those implementations
+						- Most of the times were completely different
+						- Most of the implementations were super tightly coupled
+						- No reusable across projects
+						- There is no standard
+						- That leads to confusion
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						Soution -> Micro-services/components based architecture
+						- Put reusable pieces of code in a separate repo
+						- mutirepo yo loose the scope and understanding of the whole app
+						- mutirepo you don't now if you are breaking someone else's code because you are not testing everything
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						example of local file system with multiple projects using same dependency to ilustrate the pain of updating dependencies
+						i.e. Changelog, Lifecycle & Logistics use fetch
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						- IN A MONOREPO WE CAN EASILY test the app as a whole
+						- IN A MONOREPO WE CAN EASILY CREATE A SCRIPT THAT UPDATES ALL THE PACKAGES USING A DEPENDENCY THAT WE JUST UPDATED.
+						- better cross project changes
+						- in a monorepo we can easily make sure that we are using only one version of a dependency
+						- a monorepo makes you think carefuly about your dependency tree
+						- in a monorepo we can still build and deploy individualy only the modified packages
+						- in a moonorepo you have a better understanding of the application as a whole
+						- in a monorepo it's easier to locate all the parts that compose an app
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						CONCLUSION
+						- sharing is caring
+							- modularise everything
+						- think twice before creating a new repo
+						- make your life easier
+							- automate everything
+						- be responsible
+							- test everything
+					</textarea>
+				</section>
 			</div>
 		</div>
 
@@ -33,17 +101,23 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
+		// More info about config & dependencies:
+// - https://github.com/hakimel/reveal.js#configuration
+// - https://github.com/hakimel/reveal.js#dependencies
+Reveal.initialize({
+  dependencies: [
+    { src: "plugin/markdown/marked.js" },
+    { src: "plugin/markdown/markdown.js" },
+    { src: "plugin/notes/notes.js", async: true },
+    {
+      src: "plugin/highlight/highlight.js",
+      async: true,
+      callback: function() {
+        hljs.initHighlightingOnLoad();
+      }
+    }
+  ]
+});
+</script>
 	</body>
 </html>
