@@ -14,53 +14,59 @@
 
 		<!-- Printing and PDF exports -->
 		<script>
-		var link = document.createElement('link')
-link.rel = 'stylesheet'
-link.type = 'text/css'
+		var link = document.createElement("link");
+link.rel = "stylesheet";
+link.type = "text/css";
 link.href = window.location.search.match(/print-pdf/gi)
-  ? 'css/print/pdf.css'
-  : 'css/print/paper.css'
-document.getElementsByTagName('head')[0].appendChild(link)
+  ? "css/print/pdf.css"
+  : "css/print/paper.css";
+document.getElementsByTagName("head")[0].appendChild(link);
 </script>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown>
+				<section data-markdown data-separator-notes="^Note:">
 					<textarea data-template>
 						# FROM MONOLITH TO MONOREPO THROUGH MULTIREPO
 					</textarea>
 				</section>
 				<section data-markdown>
-					<textarea data-template>
-						## Initial situation
-						- We had different FE/React applications in admin repo
-							- STM
-							- Claims
-							- Branch selector
-							- All sorts of *&?#%$ up jQuery scripts
-						- We had other FE/React applications in other repos
-							- Eagle
-							- Purchase App
-						- Most of them were all pretty similar in many aspects
-							- Almost same third party dependencies
-							- Same programming languages
-							- Handling application state
-							- Handling HTTP requests
-							- Handling translations
-						- Some of them were using totally different technologies
+					<textarea data-template data-separator-notes="^Note:">
+						## The monorepo
+						definition
 					</textarea>
 				</section>
 				<section data-markdown>
-					<textarea data-template>
+					<textarea data-template data-separator-notes="^Note:">
+						## Starting point
+						- Applications in ¨admin¨ repo
+							- STM, Claims, Branch selector, random scripts ...
+						- Applications in other repos
+							- Eagle, Purchase App
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template data-separator-notes="^Note:">
+						## A lot of similarities
+						- Similar third party dependencies (react, redux...)
+						- Same programming languages (js, css, html...)
+						- Handling application state (flux)
+						- Handling HTTP requests
+						- Handling translations
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template data-separator-notes="^Note:">
 						## Problems
-						- They did not share any of those implementations
-						- Different versions of the same dependency in the same page
-						- Most of the times were completely different
-						- Most of the implementations were super tightly coupled
-						- No reusable across projects
-						- There is no standard
-						- That leads to confusion
+						- No modularity
+							- No reusability
+							- Different approaches (confusion)
+								- No standard/convention
+							- Thightly coupled code
+							- Big code base (no DRY)
+						- Hard to track and manage dependencies
+							- Different versions of the same dependency
 					</textarea>
 				</section>
 				<section>
@@ -68,17 +74,26 @@ document.getElementsByTagName('head')[0].appendChild(link)
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-						## What do we need/want?
-						- Share solutions to same problems
+						## The multirepo
+						definition
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-						## Multirepo
+						## Pros
+						- Modularity
 						- Reusable code across projects
 						- Less codebase == less intimidating
 						- No merge hell
 						- Fast clone / pull / push
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Cons
+						- Still hard to track and manage dependencies
+						- Hard to do cross project changes
+						- Hard to refactor
 						- Loose scope of the whole app
 						- Updates may break other projects
 					</textarea>
@@ -91,7 +106,13 @@ document.getElementsByTagName('head')[0].appendChild(link)
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-						## Monorepo
+						## The monorepo
+						definition
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Pros
 						- Test whole app
 						- Better tooling
 							- Easy to write scripts to perform project-wide tasks
@@ -106,14 +127,21 @@ document.getElementsByTagName('head')[0].appendChild(link)
 				</section>
 				<section data-markdown>
 					<textarea data-template>
+						# Cons
+						- merge hell without trunk-based development
+						- more intimidating codebase
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
 						## CONCLUSION
-						- sharing is caring
+						- reduce code base
 							- modularise everything
 							- loose coupled modules
 						- think twice before creating a new repo
 						- make your life easier
 							- automate everything
-						- be responsible
+						- protect yourself
 							- test everything
 						- one monorepo for whole company?
 					</textarea>
@@ -132,18 +160,18 @@ Reveal.initialize({
   overview: true,
   autoplayMedia: true,
   dependencies: [
-    { src: 'plugin/markdown/marked.js' },
-    { src: 'plugin/markdown/markdown.js' },
-    { src: 'plugin/notes/notes.js', async: true },
+    { src: "plugin/markdown/marked.js" },
+    { src: "plugin/markdown/markdown.js" },
+    { src: "plugin/notes/notes.js", async: true },
     {
-      src: 'plugin/highlight/highlight.js',
+      src: "plugin/highlight/highlight.js",
       async: true,
       callback: function() {
-        hljs.initHighlightingOnLoad()
+        hljs.initHighlightingOnLoad();
       }
     }
   ]
-})
+});
 </script>
 	</body>
 </html>
