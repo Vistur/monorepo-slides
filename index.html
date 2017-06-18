@@ -29,21 +29,35 @@ document.getElementsByTagName("head")[0].appendChild(link);
 				<section data-markdown data-separator-notes="^Note:">
 					<textarea data-template>
 						# FROM MONOLITH TO MONOREPO THROUGH MULTIREPO
+						A tale of code sharing and productivity
+						Note:
+						This is a highly controversial theme.
+
+						I'll just try to explain my journey and the reasoning behind why me and other people choose this approach.
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template data-separator-notes="^Note:">
-						## The monorepo
-						definition
+						## The monolith
+						> "A monolithic application describes a software application which is designed without modularity."
+						\- Wikipedia
+						Note:
+						Modularity is desirable, in general, as it supports reusability.
+
+						It is also deirable because it facilitates maintenance by modifying modules instead of the whole aplication.
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template data-separator-notes="^Note:">
 						## Starting point
 						- Applications in ¨admin¨ repo
-							- STM, Claims, Branch selector, random scripts ...
+							- STM/ATM, Claims, Branch selector, random scripts ...
 						- Applications in other repos
 							- Eagle, Purchase App
+						Note:
+						This is how it looked like when I first landed in Auto1.
+
+						A bunch of applications spread through admin and other repos.
 					</textarea>
 				</section>
 				<section data-markdown>
@@ -54,6 +68,10 @@ document.getElementsByTagName("head")[0].appendChild(link);
 						- Handling application state (flux)
 						- Handling HTTP requests
 						- Handling translations
+						Note:
+						They were developed ina a pretty similar way but not exactly.
+
+						Tis is what happens when you have developers in and out, whitout modularity in mind and no guidance whatsoever.
 					</textarea>
 				</section>
 				<section data-markdown>
@@ -62,88 +80,178 @@ document.getElementsByTagName("head")[0].appendChild(link);
 						- No modularity
 							- No reusability
 							- Different approaches (confusion)
-								- No standard/convention
 							- Thightly coupled code
+								- Bad developer experience
 							- Big code base (no DRY)
-						- Hard to track and manage dependencies
-							- Different versions of the same dependency
+						Note:
+						But all of them were built from scratch because there was no modularity.
 					</textarea>
-				</section>
-				<section>
-					<image src="./wtf.gif" />
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						## The multirepo
-						definition
+						Split the reusable and complex parts of your application into single repositories.
+						Note:
+						So we thought it'd be a great idea to split our apps into small reusable modules and treating them as separate projects in their own repo.
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						## Pros
 						- Modularity
-						- Reusable code across projects
+							- Reusable code accross projects
 						- Less codebase == less intimidating
-						- No merge hell
-						- Fast clone / pull / push
+						- Independent build/deploy
+						Note:
+						Now we have modularity and we are able to reuse our code across multiple projects.
+
+						Every module is easier to to understand because it has less code and does one single thing.
+
+						And by reusing our code we are also reducing our overall codebase.
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						## Cons
-						- Still hard to track and manage dependencies
-						- Hard to do cross project changes
-						- Hard to refactor
-						- Loose scope of the whole app
-						- Updates may break other projects
+						- Easy to break other projects
+						- Hard to do cross project changes / refactor
+						- Hard to track and manage dependencies
+						- Tend to loose scope of the whole app
+						Note:
+						But as it often happens in software development, there is no silver bullet and we have to pay the price for improvements.
+
+						Read the cons.
+
+						I think that a very common problem in software development ilustrates very well all of this points.
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-						example of local file system with multiple projects using same dependency to ilustrate the pain of updating dependencies
-						i.e. Changelog, Lifecycle & Logistics use fetch
+						### Diamond dependency problem
+						<img src="/dd1.png" />
+						Note:
+						Admin depends on Changelog and Logistics and they depend on React
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Diamond dependency problem
+						<img src="/dd2.png" />
+						Note:
+						A new version ov React came out and we decide it'll be useful for Logistics.
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Diamond dependency problem
+						<div style="display: flex; justify-content: space-around;">
+							<img src="/dd3.png" />
+							<ul>
+								<li>Easy to break other projects</li>
+								<li>Hard to do cross project changes / refactor</li>
+								<li>Hard to track and manage dependencies</li>
+								<li>Tend to loose scope of the whole app</li>
+							</ul>
+						</div>
+						Note:
+						We may break other modules/projects because from within a repo we don't really know who else is using it.
+
+						This can be solved by keeping backwards compatibility which creates technical debt and it may limit our possibilities.
+
+						Another way to solve it is to enforce great a discovery culture in the company through great documentation.
+
+						But still you can see how painful it would be to do cross module modifications and update dependencies.
+
+						Very easy to forget that you are developing for admin.
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						## The monorepo
-						definition
+						Software architecture that facilitates the development of multiple projects inside one single repository.
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						## Pros
 						- Test whole app
-						- Better tooling
-							- Easy to write scripts to perform project-wide tasks
 						- Easier cross project changes / recatoring
-						- Obvious code sharing
-						- in a monorepo we can easily make sure that we are using only one version of a dependency
-						- a monorepo makes you think carefuly about your dependency tree
-						- in a monorepo we can still build and deploy individualy only the modified packages
-						- in a moonorepo you have a better understanding of the application as a whole
-						- in a monorepo it's easier to locate all the parts that compose an app
+						- Better tooling
+						- Implicit discovery culture
+						- We can still build & deploy modules independently
+						- Better understanding of the application as a whole
+						Note:
+						- Single test suite, static code analysis, etc...
+						- One single commit
+						- Easier too deveop tools for cross project tasks
+						- Easier to find packages/modules/code
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						# Cons
-						- merge hell without trunk-based development
-						- more intimidating codebase
+						- Merge hell without trunk-based development
+						- More intimidating codebase
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						## CONCLUSION
-						- reduce code base
-							- modularise everything
-							- loose coupled modules
-						- think twice before creating a new repo
-						- make your life easier
-							- automate everything
-						- protect yourself
-							- test everything
-						- one monorepo for whole company?
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th>Atomic changes</th>
+									<th>Modularity</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Monolith</td>
+									<td><input type="checkbox" checked /></td>
+									<td><input type="checkbox" /></td>
+								</tr>
+								<tr>
+									<td>Multirepo</td>
+									<td><input type="checkbox" /></td>
+									<td><input type="checkbox" checked /></td>
+								</tr>
+								<tr>
+									<td>Monorepo</td>
+									<td><input type="checkbox" checked /></td>
+									<td><input type="checkbox" checked /></td>
+								</tr>
+							</tbody>
+						</table>
+						Note:
+						Now I'm thinking about going back to admin repo and maybe joining all repos into one big Auto1 repo.
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Best practices enforced
+						<ul>
+							<li>
+								Boost productivity & reduce code base
+								<ul>
+									<li>Modularise everything</li>
+									<li>Loose coupled modules</li>
+								</ul>
+							</li>
+							<li>
+								Make your life easier
+								<ul>
+									<li>Invest in tooling (automation)</li>
+								</ul>
+							</li>
+							<li>
+								Safety first
+								<ul>
+									<li>Test everything</li>
+								</ul>
+							</li>
+							<li>Think twice before creating a new repo</li>
+						</ul>
 					</textarea>
 				</section>
 			</div>
