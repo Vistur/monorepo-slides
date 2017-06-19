@@ -14,13 +14,13 @@
 
 		<!-- Printing and PDF exports -->
 		<script>
-		var link = document.createElement("link");
-link.rel = "stylesheet";
-link.type = "text/css";
+		var link = document.createElement('link')
+link.rel = 'stylesheet'
+link.type = 'text/css'
 link.href = window.location.search.match(/print-pdf/gi)
-  ? "css/print/pdf.css"
-  : "css/print/paper.css";
-document.getElementsByTagName("head")[0].appendChild(link);
+  ? 'css/print/pdf.css'
+  : 'css/print/paper.css'
+document.getElementsByTagName('head')[0].appendChild(link)
 </script>
 	</head>
 	<body>
@@ -257,12 +257,62 @@ document.getElementsByTagName("head")[0].appendChild(link);
 				<section data-markdown>
 					<textarea data-template>
 						## This is crazy noone does that!
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## This is crazy noone does that!
+						- Google
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## This is crazy noone does that!
+						- Google
+						- Facebook
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## This is crazy noone does that!
+						- Google
+						- Facebook
+						- Twitter
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## This is crazy noone does that!
+						- Google
+						- Facebook
+						- Twitter
+						- Digital Ocean
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## This is crazy noone does that!
+						- Google
+						- Facebook
+						- Twitter
+						- Digital Ocean
+						- Etsy
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## This is crazy noone does that!
 						- Google
 						- Facebook
 						- Twitter
 						- Digital Ocean
 						- Etsy
 						- ...
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## [The resource](https://github.com/babel/babel/blob/master/doc/design/monorepo.md)
 					</textarea>
 				</section>
 			</div>
@@ -279,18 +329,18 @@ Reveal.initialize({
   overview: true,
   autoplayMedia: true,
   dependencies: [
-    { src: "plugin/markdown/marked.js" },
-    { src: "plugin/markdown/markdown.js" },
-    { src: "plugin/notes/notes.js", async: true },
+    { src: 'plugin/markdown/marked.js' },
+    { src: 'plugin/markdown/markdown.js' },
+    { src: 'plugin/notes/notes.js', async: true },
     {
-      src: "plugin/highlight/highlight.js",
+      src: 'plugin/highlight/highlight.js',
       async: true,
       callback: function() {
-        hljs.initHighlightingOnLoad();
+        hljs.initHighlightingOnLoad()
       }
     }
   ]
-});
+})
 </script>
 	</body>
 </html>
