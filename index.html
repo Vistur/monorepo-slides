@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Monorepo</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -29,7 +29,7 @@ document.getElementsByTagName('head')[0].appendChild(link)
 				<section data-markdown data-separator-notes="^Note:">
 					<textarea data-template>
 						# FROM MONOLITH TO MONOREPO THROUGH MULTIREPO
-						A tale of code sharing and productivity
+						A quest for productivity
 						Note:
 						This is a highly controversial theme.
 
@@ -79,10 +79,10 @@ document.getElementsByTagName('head')[0].appendChild(link)
 						## Problems
 						- No modularity
 							- No reusability
-							- Different approaches (confusion)
+							- Different approaches/implementations (confusion)
 							- Thightly coupled code
 								- Bad developer experience
-						- One single build for multiple projects
+							- One single build/deployment unit
 						Note:
 						But all of them were built from scratch because there was no modularity.
 					</textarea>
@@ -90,7 +90,7 @@ document.getElementsByTagName('head')[0].appendChild(link)
 				<section data-markdown>
 					<textarea data-template>
 						## The multirepo
-						Split the reusable and complex parts of your application into single repositories.
+						> Software architecture that achieves modularity by splitting application units/modules into <span style="color: orange;">separate repositories</span>.
 						Note:
 						So we thought it'd be a great idea to split our apps into small reusable modules and treating them as separate projects in their own repo.
 					</textarea>
@@ -117,6 +117,7 @@ document.getElementsByTagName('head')[0].appendChild(link)
 						- Hard to do cross project changes / refactor
 						- Hard to track and manage dependencies
 						- Tend to loose scope of the whole app
+						- Hard to find modules
 						Note:
 						But as it often happens in software development, there is no silver bullet and we have to pay the price for improvements.
 
@@ -167,8 +168,16 @@ document.getElementsByTagName('head')[0].appendChild(link)
 				</section>
 				<section data-markdown>
 					<textarea data-template>
+						<h2 style="color: orange;">Do we really need a repo for every single unit/module❔</h2>
+						<h2 style="color: orange;">Is it helping to accomplish our goal❔</h2>
+						Note:
+						Well, we achieved modularity but at the cost of many drawbacks. We achieve modularity in another way?
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
 						## The monorepo
-						Software architecture that facilitates the development of multiple projects inside one single repository.
+						> Architecture that focuses on improving management of big highly modular software ecosystems
 					</textarea>
 				</section>
 				<section data-markdown>
@@ -208,18 +217,18 @@ document.getElementsByTagName('head')[0].appendChild(link)
 							<tbody>
 								<tr>
 									<td>Monolith</td>
-									<td><input type="checkbox" checked /></td>
-									<td><input type="checkbox" /></td>
+									<td>👍</td>
+									<td>👎</td>
 								</tr>
 								<tr>
 									<td>Multirepo</td>
-									<td><input type="checkbox" /></td>
-									<td><input type="checkbox" checked /></td>
+									<td>👎</td>
+									<td>👍</td>
 								</tr>
 								<tr>
 									<td>Monorepo</td>
-									<td><input type="checkbox" checked /></td>
-									<td><input type="checkbox" checked /></td>
+									<td>💃</td>
+									<td>💃</td>
 								</tr>
 							</tbody>
 						</table>
@@ -235,13 +244,13 @@ document.getElementsByTagName('head')[0].appendChild(link)
 								Boost productivity & reduce code base
 								<ul>
 									<li>Modularise everything</li>
-									<li>Loose coupled modules</li>
+									<li>Loosely coupled modules</li>
 								</ul>
 							</li>
 							<li>
 								Make your life easier
 								<ul>
-									<li>Invest in tooling (automation)</li>
+									<li>Improve tooling (automation)</li>
 								</ul>
 							</li>
 							<li>
